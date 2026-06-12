@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogue - Ma Librairie 71 Livres</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; }
+.container { max-width: 1100px; margin: 0 auto; padding: 15px; }
+
+/* NAVIGATION */
+nav {
+  background: #2c3e50; 
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 15px;
+  z-index: 100;
+}
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+}
+nav h1 { color: white; font-size: 20px; }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: 0.2s;
+  font-size: 14px;
+}
+nav ul li a:hover, nav ul li a.active {
+  background: #3498db;
+}
+#compteur-panier { 
+  background: #e74c3c; 
+  padding: 3px 10px; 
+  border-radius: 15px; 
+  font-weight: bold; 
+  margin-left: 5px;
+}
+
+h2 { margin: 25px 0 15px; color: #2c3e50; border-left: 4px solid #3498db; padding-left: 12px; }
+
+/* CATALOGUE */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 15px;
+  margin-bottom: 40px;
+}
+.livre {
+  background: white; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+.livre:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+.livre img { width: 100%; height: 230px; object-fit: cover; background: #ecf0f1; display: block; }
+.livre-info { padding: 12px; }
+.livre-info h3 { font-size: 14px; margin-bottom: 5px; height: 36px; overflow: hidden; color: #2c3e50; }
+.livre-info p { font-size: 12px; color: #7f8c8d; }
+.prix { font-size: 17px; font-weight: bold; color: #27ae60; margin: 8px 0; }
+.btn-ajout {
+  width: 100%; padding: 9px; background: #3498db; color: white; border: none;
+  border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+.btn-ajout:hover { background: #2980b9; }
+
+/* PANIER */
+#panier {
+  background: white; border-radius: 10px; padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  scroll-margin-top: 80px;
+}
+.item-panier {
+  display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #ecf0f1; align-items: center;
+}
+.item-panier img { width: 55px; height: 75px; object-fit: cover; border-radius: 5px; }
+.item-info { flex: 1; }
+.item-info h4 { font-size: 14px; color: #2c3e50; }
+.qte-controls { display: flex; gap: 6px; align-items: center; background: #ecf0f1; border-radius: 5px; padding: 3px; }
+.qte-controls button { width: 28px; height: 28px; border: none; background: white; cursor: pointer; border-radius: 4px; font-weight: bold; }
+.qte-controls span { min-width: 25px; text-align: center; font-weight: 600; }
+.btn-suppr { background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+.btn-suppr:hover { background: #c0392b; }
+.total { text-align: right; font-size: 22px; font-weight: bold; margin-top: 20px; color: #27ae60; border-top: 2px dashed #bdc3c7; padding-top: 15px; }
+.btn-commander { width: 100%; padding: 14px; background: #25D366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 12px; transition: 0.2s; }
+.btn-commander:hover { background: #20ba5a; }
+.vide { text-align: center; color: #95a5a6; padding: 30px; font-size: 16px; }
+
+/* FOOTER CONTACT RAPIDE */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+footer a { color: #3498db; text-decoration: none; font-weight: 600; }
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .nav-content { flex-direction: column; gap: 10px; }
+  nav ul { gap: 8px; }
+  .grille { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .livre img { height: 200px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- MENU AVEC LIENS VERS AUTRES PAGES -->
+<nav>
+  <div class="nav-content">
+    <h1>📚 Ma Librairie</h1>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="catalogue.html" class="active">Catalogue</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#panier">Panier <span id="compteur-panier">0</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<h2>Catalogue - 71 Livres</h2>
+<div class="grille" id="grille-livres"></div>
+
+<h2 id="panier">🛒 Votre Panier</h2>
+<div id="contenu-panier"></div>
+
+<!-- FOOTER RAPIDE -->
+<footer>
+  <p>📍 Grand-Lahou, Côte d'Ivoire | © 2026 Ma Librairie</p>
+  <p style="margin-top:10px;"><a href="contact.html">Infos complètes & Contact →</a></p>
+</footer>
+
+</div>
+
+<script>
+const TOTAL_LIVRES = 71;
+const livres = [];
+
+for(let i = 1; i <= TOTAL_LIVRES; i++) {
+  livres.push({
+    id: i,
+    titre: `Livre ${i}`,
+    auteur: `Auteur ${i}`,
+    prix: 5000,
+    image: `livre (${i}).jpeg`
+  });
+}
+
+let panier = JSON.parse(localStorage.getItem('panier')) || [];
+
+function afficherCatalogue() {
+  const div = document.getElementById('grille-livres');
+  let html = '';
+  
+  livres.forEach(livre => {
+    html += `
+      <div class="livre">
+        <img src="${encodeURIComponent(livre.image)}" 
+             alt="${livre.titre}" 
+             loading="lazy"
+             onerror="this.src='https://via.placeholder.com/170x230/FF0000/FFFFFF?text=ERREUR+${livre.id}'">
+        <div class="livre-info">
+          <h3>${livre.titre}</h3>
+          <p>${livre.auteur}</p>
+          <div class="prix">${livre.prix.toLocaleString()} FCFA</div>
+          <button class="btn-ajout" onclick="ajouterAuPanier(${livre.id})">+ Ajouter</button>
+        </div>
+      </div>
+    `;
+  });
+  div.innerHTML = html;
+}
+
+function ajouterAuPanier(id) {
+  const livre = livres.find(l => l.id === id);
+  const item = panier.find(p => p.id === id);
+  if(item) item.quantite++; else panier.push({...livre, quantite: 1});
+  sauvegarderPanier(); afficherPanier(); mettreAJourCompteur();
+}
+
+function afficherPanier() {
+  const div = document.getElementById('contenu-panier');
+  if(panier.length === 0) {
+    div.innerHTML = '<p class="vide">Votre panier est vide</p>';
+    return;
+  }
+  
+  let html = ''; let total = 0;
+  panier.forEach(item => {
+    const sousTotal = item.prix * item.quantite;
+    total += sousTotal;
+    html += `
+      <div class="item-panier">
+        <img src="${encodeURIComponent(item.image)}" onerror="this.src='https://via.placeholder.com/55x75?text=No'">
+        <div class="item-info">
+          <h4>${item.titre}</h4>
+          <p style="color:#27ae60;font-weight:bold">${item.prix.toLocaleString()} FCFA</p>
+        </div>
+        <div class="qte-controls">
+          <button onclick="changerQte(${item.id}, -1)">-</button>
+          <span>${item.quantite}</span>
+          <button onclick="changerQte(${item.id}, 1)">+</button>
+        </div>
+        <button class="btn-suppr" onclick="supprimerItem(${item.id})">Suppr</button>
+      </div>
+    `;
+  });
+  
+  html += `<div class="total">Total: ${total.toLocaleString()} FCFA</div>`;
+  html += `<button class="btn-commander" onclick="commanderWhatsApp()">📱 Commander sur WhatsApp</button>`;
+  div.innerHTML = html;
+}
+
+function changerQte(id, delta) {
+  const item = panier.find(p => p.id === id);
+  item.quantite += delta;
+  if(item.quantite <= 0) supprimerItem(id);
+  else { sauvegarderPanier(); afficherPanier(); mettreAJourCompteur(); }
+}
+
+function supprimerItem(id) {
+  panier = panier.filter(p => p.id !== id);
+  sauvegarderPanier(); afficherPanier(); mettreAJourCompteur();
+}
+
+function sauvegarderPanier() { localStorage.setItem('panier', JSON.stringify(panier)); }
+
+function mettreAJourCompteur() {
+  const total = panier.reduce((sum, item) => sum + item.quantite, 0);
+  document.getElementById('compteur-panier').textContent = total;
+}
+
+function commanderWhatsApp() {
+  let message = "Bonjour, je commande:%0A%0A";
+  let total = 0;
+  panier.forEach(item => {
+    const sousTotal = item.prix * item.quantite;
+    message += `• ${item.titre} x${item.quantite} = ${sousTotal.toLocaleString()} FCFA%0A`;
+    total += sousTotal;
+  });
+  message += `%0ATotal: ${total.toLocaleString()} FCFA`;
+  window.open(`https://wa.me/225XXXXXXXXX?text=${message}`, '_blank');
+}
+
+afficherCatalogue();
+afficherPanier();
+mettreAJourCompteur();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Père Riche Père Pauvre - MaLibrairie</title>
+  <style>
+
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* HEADER */
+header {
+  background: #1a1a2e;
+  color: white;
+  padding: 15px 0;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 24px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+nav a:hover, nav a.active {
+  color: #f39c12;
+}
+
+/* HERO ACCUEIL */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/banniere.jpg') center/cover;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h2 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+.btn {
+  background: #f39c12;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #e67e22;
+}
+
+/* CATÉGORIES ACCUEIL */
+.categories {
+  padding: 60px 0;
+  text-align: center;
+}
+.categories h3 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+.grid-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+.card-cat {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.card-cat:hover {
+  transform: translateY(-5px);
+}
+.card-cat img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-cat h4 {
+  padding: 15px 15px 5px;
+  font-size: 18px;
+}
+.card-cat p {
+  padding: 0 15px 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* NOUVEAUTÉS */
+.nouveautes {
+  background: #f4f4f4;
+  padding: 60px 0;
+  text-align: center;
+}
+.nouveautes h3 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+/* PAGE CATALOGUE */
+.page-titre {
+  background: #f4f4f4;
+  padding: 40px 0;
+  text-align: center;
+}
+.page-titre h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+.page-titre p {
+  color: #666;
+  font-size: 16px;
+}
+
+.filtres {
+  background: white;
+  padding: 15px 0;
+  border-bottom: 2px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.filtres .container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.filtres a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.filtres a:hover {
+  background: #f39c12;
+  color: white;
+}
+
+.categorie-section {
+  padding: 60px 0;
+}
+.categorie-section:nth-child(even) {
+  background: #fafafa;
+}
+.categorie-section h3 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  border-left: 5px solid #f39c12;
+  padding-left: 15px;
+}
+
+/* GRILLE LIVRES */
+.grid-livres {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+.card-livre {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card-livre:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.card-livre img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.card-livre h4 {
+  margin: 12px 0 5px;
+  font-size: 16px;
+  min-height: 40px;
+}
+.auteur {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.prix {
+  font-size: 20px;
+  font-weight: bold;
+  color: #27ae60;
+  margin: 10px 0;
+}
+.card-livre button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.card-livre button:hover {
+  background: #2980b9;
+}
+
+/* PAGE CONTACT */
+.contact-section {
+  padding: 60px 0;
+}
+.grid-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.contact-infos h3, .contact-form h3 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  border-left: 5px solid #f39c12;
+  padding-left: 12px;
+}
+.info-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+}
+.icon {
+  font-size: 28px;
+}
+.info-item h4 {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.info-item p, .info-item a {
+  color: #555;
+  text-decoration: none;
+}
+.info-item a:hover {
+  color: #f39c12;
+}
+.btn-whatsapp {
+  display: inline-block;
+  background: #25D366;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+.btn-whatsapp:hover {
+  background: #1da851;
+}
+.contact-form {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: 'Arial', sans-serif;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #f39c12;
+}
+.contact-form button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+.contact-form button:hover {
+  background: #2980b9;
+}
+
+/* FICHE LIVRE */
+.breadcrumb {
+  background: #f4f4f4;
+  padding: 12px 0;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #3498db;
+  text-decoration: none;
+}
+.breadcrumb span {
+  color: #666;
+}
+
+.fiche-livre {
+  padding: 50px 0;
+}
+.grid-fiche {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 50px;
+}
+
+.fiche-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.fiche-infos h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #1a1a2e;
+}
+.fiche-auteur {
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 8px;
+}
+.fiche-categorie {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.fiche-prix {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+.prix-actuel {
+  font-size: 36px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.fiche-description {
+  margin: 30px 0;
+}
+.fiche-description h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #f39c12;
+  padding-left: 10px;
+}
+.fiche-description p {
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+}
+.fiche-description ul {
+  list-style: none;
+  padding-left: 0;
+}
+.fiche-description li {
+  padding: 8px 0;
+  color: #555;
+}
+
+.fiche-details {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 25px 0;
+}
+.fiche-details p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.btn-commander {
+  display: block;
+  background: #25D366;
+  color: white;
+  padding: 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 25px;
+  transition: background 0.3s;
+}
+.btn-commander:hover {
+  background: #1da851;
+}
+
+.livraison {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* FOOTER */
+footer {
+  background: #1a1a2e;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .grid-livres {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-fiche {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-categories {
+    grid-template-columns: 1fr;
+  }
+  .grid-livres {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .grid-contact {
+    grid-template-columns: 1fr;
+  }
+  .hero h2 {
+    font-size: 28px;
+  }
+  nav a {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  .fiche-infos h2 {
+    font-size: 26px;
+  }
+  .prix-actuel {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-livres {
+    grid-template-columns: 1fr;
+  }
+  .card-livre img {
+    height: 300px;
+  }
+}
+  </style>
+  </head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1 class="logo">📚 MaLibrairie</h1>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="cagtalogue.html">Catalogue</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Fil d'Ariane -->
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Accueil</a> > 
+      <a href="catalogue.html#dev-perso">Développement Personnel</a> > 
+      <span>Père Riche Père Pauvre</span>
+    </div>
+  </div>
+
+  <!-- Fiche Produit -->
+  <section class="fiche-livre">
+    <div class="container">
+      <div class="grid-fiche">
+        
+        <!-- Colonne image -->
+        <div class="fiche-image">
+          <img src="LIVRE1.webp" alt="Père Riche Père Pauvre">
+        </div>
+
+        <!-- Colonne infos -->
+        <div class="fiche-infos">
+          <h2>Père Riche Père Pauvre</h2>
+          <p class="fiche-auteur">Par Robert Kiyosaki</p>
+          <p class="fiche-categorie">Catégorie : Développement Personnel</p>
+          
+          <div class="fiche-prix">
+            <span class="prix-actuel">7500 FCFA</span>
+          </div>
+
+          <div class="fiche-description">
+            <h3>Description</h3>
+            <p>
+              Robert Kiyosaki t'explique pourquoi les riches ne travaillent pas pour l'argent. 
+              Ce livre bouleverse tout ce qu'on t'a appris sur l'argent, l'investissement et la liberté financière.
+              Un must-read si tu veux changer ta relation avec l'argent.
+            </p>
+            <ul>
+              <li>✓ Leçon #1 : Les riches n'achètent pas de passifs</li>
+              <li>✓ Leçon #2 : L'éducation financière</li>
+              <li>✓ Leçon #3 : Pensez en termes d'entreprise</li>
+            </ul>
+          </div>
+
+          <div class="fiche-details">
+            <p><strong>Éditeur :</strong> BestSeller</p>
+            <p><strong>Pages :</strong> 336</p>
+            <p><strong>Langue :</strong> Français</p>
+            <p><strong>Disponibilité :</strong> En stock</p>
+          </div>
+
+          <!-- Bouton action -->
+           <a href="https://wa.me/+2250711324828" target="_blank" class="btn-whatsapp">
+              💬 Commander sur WhatsApp
+           </a>
+          
+
+          <p class="livraison">Livraison rapide partout à Abidjan </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 MaLibrairie - Livraison partout à Abidjan</p>
+    </div>
+  </footer>
+  <!-- FOOTER CONTACT -->
+<footer id="contact">
+  <h3>Contactez-nous</h3>
+  <p>📞 WhatsApp: <a href="https://wa.me/2250711324828">+2250711324828</a></p>
+  <p>📧 Email: ahmadmouktar10@gmail.com</p>
+  <p>📍Marcory Côte d'Ivoire</p>
+  <p style="margin-top:10px; font-size:12px;">© 2026 Ma Librairie - Tous droits réservés</p>
+</footer>
+
+</body>
+</html>
